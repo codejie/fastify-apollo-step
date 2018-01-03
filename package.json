@@ -1,0 +1,32 @@
+{
+  "name": "fastify-apollo-step",
+  "version": "0.0.1",
+  "description": "Set up Apollo Server on Fastify.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codejie/fastify-apollo-step.git"
+  },
+  "keywords": [
+    "fastify",
+    "apollo",
+    "graphql"
+  ],
+  "author": "Jie.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codejie/fastify-apollo-step/issues"
+  },
+  "homepage": "https://github.com/codejie/fastify-apollo-step#readme",
+  "dependencies": {
+    "apollo-server-core": "^1.3.2",
+    "apollo-server-module-graphiql": "^1.3.2",
+    "fastify": "^0.37.0",
+    "graphql": "^0.12.3",
+    "graphql-tools": "^2.16.0",
+    "lodash": "^4.17.4"
+  }
+}
