@@ -6,7 +6,7 @@ const resolveGraphiQLString = require('apollo-server-module-graphiql').resolveGr
 function graphiql(options) {
     return {
         method: 'GET',
-        url: '/graphiql',
+        url: options.path,
         schema: {
             querystring: {
                 query: {
@@ -23,7 +23,7 @@ function graphiql(options) {
             }            
         },
         handler: function (request, reply) {
-            resolveGraphiQLString(request.query, options, request.req)
+            resolveGraphiQLString(request.query, options.apollo, request.req)
                 .then((response) => {
                     reply.type('text/html').code(200).send(response);
                 }, (err) => {
@@ -33,8 +33,4 @@ function graphiql(options) {
     }
 }
 
-module.exports = function (fastify, options, next) {
-    fastify.route(graphiql(options));
-
-    next();
-}
+module.exports = graphiql;

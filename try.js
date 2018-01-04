@@ -3,7 +3,8 @@
 const fastify = require('fastify')();
 const { makeExecutableSchema,addMockFunctionsToSchema } = require('graphql-tools');
 
-const { graphql, graphiql } = require('./');
+// const { graphql, graphiql } = require('./');
+const graphqlStep = require('./index');
 
 const typeDefs = `
     type Query {
@@ -65,9 +66,43 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
-fastify.register(graphql, {schema});
-fastify.register(graphiql, {
-    endpointURL: '/'
+const options = {
+    graphql: {
+        path: '/ql',
+        apollo: {
+            schema
+        }
+    },
+    graphiql: {
+        path: '/graphiql',
+        apollo: {
+            endpointURL: '/ql'
+        }
+    }
+};
+
+// fastify.register(graphql, options);
+// fastify.register(graphiql, options);
+
+fastify.register(graphqlStep, options);
+
+fastify.addHook('preHandler', (request, reply, next) => {
+    if (request.body) {
+        console.log('preHandler - (reqId:%d) body:%j\n', request.req.id, request.body);
+    }
+    next();                
+});
+
+fastify.addHook('onSend', (request, reply, payload, next) => {
+    if (payload) {
+        console.log('onSend - (reqId:%d) payload:%j\n', request.req.id, payload);
+    }
+    next();                
+});
+
+fastify.addHook('onRequest', (req, res, next) => {
+    console.log('onRequest - ', req);
+    next();
 });
 
 fastify.listen(3001);

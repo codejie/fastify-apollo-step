@@ -5,7 +5,7 @@ const runHttpQuery = require('apollo-server-core').runHttpQuery;
 function graphql(options) {
     return {
         method: ['GET', 'POST'],
-        url: '/',
+        url: options.path,
         schema: {
             querystring: {
                 query: {
@@ -64,7 +64,7 @@ function graphql(options) {
         handler: function (request, reply) {
             runHttpQuery([request, reply], {
                 method: request.req.method,
-                options: options,
+                options: options.apollo,
                 query: request.req.method === 'POST' ? request.body : request.query
             }).then((response) => {
                 reply.type('application/graphql').send(response);
@@ -82,8 +82,4 @@ function graphql(options) {
     }
 }
 
-module.exports = function (fastify, options, next) {
-    fastify.route(graphql(options));
-
-    next();
-}
+module.exports = graphql;
