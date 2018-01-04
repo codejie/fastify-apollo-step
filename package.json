@@ -26,7 +26,6 @@
     "apollo-server-module-graphiql": "^1.3.2",
     "fastify": "^0.37.0",
     "graphql": "^0.12.3",
-    "graphql-tools": "^2.16.0",
-    "lodash": "^4.17.4"
+    "graphql-tools": "^2.16.0"
   }
 }
