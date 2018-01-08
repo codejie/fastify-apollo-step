@@ -9,6 +9,7 @@ const graphqlStep = require('./index');
 const typeDefs = `
     type Query {
         cat(id: Int!): Cat
+        allCats: [Cat]
     }
 
     type Mutation {
@@ -45,7 +46,10 @@ const resolvers = {
                 }
             }
           return null;
-        }    
+        },
+        allCats: () => {
+            return cats;
+        }
     },
     Mutation: {
         createCat: (_, data) => {
@@ -69,12 +73,20 @@ const schema = makeExecutableSchema({
 const options = {
     graphql: {
         path: '/ql',
+        beforeHandler: function (request, reply, done) {
+            console.log('beforeHandler - graphql');
+            done();
+        },
         apollo: {
             schema
         }
     },
     graphiql: {
         path: '/graphiql',
+        beforeHandler: function (request, reply, done) {
+            console.log('beforeHandler - graphiql');
+            done();
+        },        
         apollo: {
             endpointURL: '/ql'
         }
@@ -100,10 +112,10 @@ fastify.addHook('onSend', (request, reply, payload, next) => {
     next();                
 });
 
-fastify.addHook('onRequest', (req, res, next) => {
-    console.log('onRequest - ', req);
-    next();
-});
+// fastify.addHook('onRequest', (req, res, next) => {
+//     console.log('onRequest - ', req);
+//     next();
+// });
 
 fastify.listen(3001);
 

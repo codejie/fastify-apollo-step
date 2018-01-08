@@ -22,6 +22,7 @@ function graphiql(options) {
                 }            
             }            
         },
+        beforeHandler: options.beforeHandler,
         handler: function (request, reply) {
             resolveGraphiQLString(request.query, options.apollo, request.req)
                 .then((response) => {

@@ -26,12 +26,17 @@ fastify-apollo-step can be configurated with the follow option object, inclues i
 const options = {
     graphql: {
         path: '/ql', //optional
+        beforeHandler: function (request, reply, done) { //optional
+            console.log('beforeHandler - graphql');
+            done();
+        },        
         apollo: {
             schema
         }
     },
     graphiql: { //optional
         path: '/graphiql', //optional
+        beforeHandler: beforeHandlerFunc, //optional
         apollo: {
             endpointURL: '/ql' //optional
         }
@@ -41,10 +46,12 @@ const options = {
 
 `options.graphql` is used to configurate GraphQL module. 
 * **`path`**: the access path of GraphQL, the default is '/'
+* **`beforeHandler`**: beforeHandler of fastify
 * **`apollo`**: the GraphQL module configrations of Apollo Server, for detail to [Apollo Options](https://github.com/apollographql/apollo-server#options)
 
 `options.graphiql` is used to configurate to GraphiQL module. if this options does not exist, fastify-apollo-step will not load GraphiQL module.
 * **`path`**: the access path of GraphiQL, the default is '/graphiql'
+* **`beforeHandler`**: beforeHandler of fastify
 * **`apollo`**: the GraphiQL module configuations of Apollo Server, for detail to [apollo-server-module-graphiql](https://github.com/apollographql/apollo-server/blob/master/packages/apollo-server-module-graphiql/src/resolveGraphiQLString.ts). this option `endpointURL` should the same as `graphql.path`, and it is optional, the default uses `graphql.path`.
 
 ## Example

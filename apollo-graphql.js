@@ -41,7 +41,10 @@ function graphql(options) {
                     type: 'object',
                     properties: {
                         data: {
-                            type: 'string'
+                            anyOf: [
+                                { type: 'string' },
+                                { type: 'object' }
+                            ]
                         }
                     }
                 },
@@ -61,6 +64,7 @@ function graphql(options) {
                 }
             }
         },
+        beforeHandler: options.beforeHandler,
         handler: function (request, reply) {
             runHttpQuery([request, reply], {
                 method: request.req.method,
