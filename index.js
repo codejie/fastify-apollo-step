@@ -1,7 +1,7 @@
 'use strict'
 
-const graphql = require('./apollo-graphql');
-const graphiql = require('./apollo-graphiql');
+const graphql = require('./src/apollo-graphql');
+const graphiql = require('./src/apollo-graphiql');
 
 module.exports = function (fastify, options, next) {
 

@@ -1,10 +1,15 @@
 'use strict'
 
 const fastify = require('fastify')();
-const { makeExecutableSchema,addMockFunctionsToSchema } = require('graphql-tools');
+const { makeExecutableSchema, PubSub } = require('apollo-server-core');
+
+const { SubscriptionServer, ExecutionParams } = require('subscriptions-transport-ws');
+const { execute, subscribe } = require('graphql');
 
 // const { graphql, graphiql } = require('./');
-const graphqlStep = require('./index');
+const graphqlStep = require('../index');
+
+const pubsub = new PubSub();
 
 const typeDefs = `
     type Query {
@@ -14,6 +19,11 @@ const typeDefs = `
 
     type Mutation {
         createCat(name: String!): Cat
+    }
+
+    type Subscription {
+        catAdded: Cat
+        newMessage: String
     }
 
     type Cat {
@@ -55,14 +65,27 @@ const resolvers = {
         createCat: (_, data) => {
             const cat = Object.assign({id: cats.length + 1}, data);
             cats.push(cat);
+
+            pubsub.publish('catAdded', cat);
+
             return cat;
+        }
+    },
+    Subscription: {
+        catAdded:  {
+            resolve: (payload) => {
+                return payload;
+            },
+            subscribe: () => pubsub.asyncIterator ('catAdded')
+        },
+        newMessage: {
+            subscribe: () => pubsub.asyncIterator('new_message')
         }
     },
     Cat: {
         id: (cat) => cat.id,
         name: (cat) => cat.name
-    },
-    
+    }
 };
 
 const schema = makeExecutableSchema({
@@ -117,5 +140,27 @@ fastify.addHook('onSend', (request, reply, payload, next) => {
 //     next();
 // });
 
-fastify.listen(3001);
+fastify.listen(3001, (err) => {
+    if (err) {
+        console.error('start failed - ', err);
+        return;
+    }
+
+    new SubscriptionServer({
+        execute,
+        subscribe,
+        schema
+    }, {
+        server: fastify.server,
+        path: '/subscriptions'
+    });
+
+    console.log('started.');
+
+    setInterval(() => {
+        pubsub.publish('new_message', {
+            newMessage: 'hello'
+        });
+    }, 1000);
+});
 

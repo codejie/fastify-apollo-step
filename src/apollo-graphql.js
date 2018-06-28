@@ -1,5 +1,6 @@
 'use strict'
 
+const fastStringify = require('fast-safe-stringify').stable;
 const runHttpQuery = require('apollo-server-core').runHttpQuery;
 
 function graphql(options) {
@@ -71,7 +72,7 @@ function graphql(options) {
                 options: options.apollo,
                 query: request.req.method === 'POST' ? request.body : request.query
             }).then((response) => {
-                reply.type('application/graphql').send(response);
+                reply.type('application/graphql').send(response.graphqlResponse);
             }, (err) => {
                 if (err.name === 'HttpQueryError') {
                     if (err.headers) {
