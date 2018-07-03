@@ -87,4 +87,15 @@ fastify.listen(3000, (err) => {
     npm run subscription
 ```
 # ScreenShots
+* Query
+
+![Query](https://raw.githubusercontent.com/codejie/fastify-apollo-step/master/screenshots/query.jpg)
+
+* Mutaton
+
+![Mutation](https://raw.githubusercontent.com/codejie/fastify-apollo-step/master/screenshots/mutation.jpg)
+
+* Subscription
+
+![Subscription](https://raw.githubusercontent.com/codejie/fastify-apollo-step/master/screenshots/subscription.jpg)
 
