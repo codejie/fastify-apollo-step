@@ -1,10 +1,12 @@
 {
   "name": "fastify-apollo-step",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Set up Apollo Server on Fastify.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "query": "node test/query.js",
+    "mutation": "node test/mutation.js",
+    "subscription": "node test/subscription.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +15,8 @@
   "keywords": [
     "fastify",
     "apollo",
-    "graphql"
+    "graphql",
+    "subscription"
   ],
   "author": "Jie.",
   "license": "MIT",

@@ -1,32 +1,28 @@
 'use strict'
 
-const graphql = require('./src/apollo-graphql');
-const graphiql = require('./src/apollo-graphiql');
+const ApolloFastify = require('./lib/apollo-fastify');
 
-module.exports = function (fastify, options, next) {
-    const graphql = {
-        path: options.path || '/',
-        
-    };
+module.exports = ApolloFastify;
 
-
-    if (options.graphql.path == undefined) {
-        options.graphql.path = '/';
-    }
-    fastify.route(graphql(options.graphql));
-
-    if (options.graphiql) {
-        if (options.graphiql.path === undefined) {
-            options.graphiql.path = '/graphiql';
-        }
-        if (options.graphiql.apollo === undefined) {
-            options.graphiql.apollo = {};
-        }
-        if (options.graphiql.apollo.endpointURL === undefined) {
-            options.graphiql.apollo.endpointURL = options.graphql.path;
-        }        
-        fastify.route(graphiql(options.graphiql));
-    }
-
-    next();
-}
+// const options = {
+//     path: '/ql',
+//     context: undefined,//not supported yet.
+//     schema: undefined,
+//     typeDefs: typeDefs,
+//     resolvers: resolvers,
+//     subscriptions: {
+//       enabled: true,
+//       path: '/subscriptions',
+//       onConnect: (connectionParams, webSocket) => {
+//       },
+//       onDisconnect: (webSocket, connectionContext) => {
+//       }
+//     },
+//     graphiql: {
+//       enabled: true,
+//       path: '/iql'
+//     },
+//     beforeHandler: function (request, reply, done) {
+//       done();
+//     }
+// };
