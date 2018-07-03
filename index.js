@@ -4,6 +4,11 @@ const graphql = require('./src/apollo-graphql');
 const graphiql = require('./src/apollo-graphiql');
 
 module.exports = function (fastify, options, next) {
+    const graphql = {
+        path: options.path || '/',
+        
+    };
+
 
     if (options.graphql.path == undefined) {
         options.graphql.path = '/';

@@ -116,9 +116,6 @@ const options = {
     }
 };
 
-// fastify.register(graphql, options);
-// fastify.register(graphiql, options);
-
 fastify.register(graphqlStep, options);
 
 fastify.addHook('preHandler', (request, reply, next) => {
@@ -139,6 +136,14 @@ fastify.addHook('onSend', (request, reply, payload, next) => {
 //     console.log('onRequest - ', req);
 //     next();
 // });
+
+fastify.get('/t', (request, reply) => {
+    reply.send('hello');
+});
+
+fastify.register(require('../lib/graphql-playground-plugin'), {
+    path: '/iql'
+});
 
 fastify.listen(3001, (err) => {
     if (err) {

@@ -27,6 +27,7 @@
     "fast-safe-stringify": "^2.0.4",
     "fastify": "^1.6.0",
     "graphql": "^0.13.2",
+    "graphql-playground-html": "^1.6.0",
     "graphql-tools": "^3.0.4"
   }
 }
