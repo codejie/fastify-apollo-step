@@ -62,7 +62,7 @@ const options = {
 * **`graphiql`**: Options of GraphiQL of Playground;
 * **`beforeHandler`**: beforeHandler function of Fastify while calls QL or iQL;
 
-# Usage
+# Example
 ```js
 const options = {
   path: '/ql',
