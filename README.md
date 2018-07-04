@@ -19,8 +19,12 @@ fastify-apollo-step also supports graphiql/playground module of Apollo Server.
 
 # Usage
 ```
-npm install --save fastify-apollo-step
+npm install --save fastify-apollo-step apollo-server-core@rc graphql fastify graphql-playground-html graphql-tools
+
 ```
+* apollo-server is a release candidate, its necessary to install from the rc tag -- https://www.apollographql.com/
+* by fastify, just need apollo-server-core, not apollo-server
+
 
 # Options
 fastify-apollo-step can be configurated with the follow option object, inclues itself configurations and Apollo Server configurations.

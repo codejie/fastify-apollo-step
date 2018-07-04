@@ -1,6 +1,7 @@
 'use strict'
 
-const { gql, PubSub } = require('apollo-server-core');
+const { gql } = require('apollo-server-core');
+const { PubSub } = require('graphql-subscriptions');
 
 const fastify = require('fastify')();
 
