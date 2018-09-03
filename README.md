@@ -1,7 +1,7 @@
 # fastify-apollo-step
 Set up Apollo Server with Fastify.
 
-`update to ApolloServer(2.0.0-rc.3), and supports Subscriptions!`
+`update to ApolloServer(2.0.x), and supports Subscriptions!`
 
 # [fastify](https://github.com/fastify) 
 Fast and low overhead web framework, for Node.js
@@ -19,10 +19,9 @@ fastify-apollo-step also supports graphiql/playground module of Apollo Server.
 
 # Usage
 ```
-npm install --save fastify-apollo-step apollo-server-core@rc graphql fastify graphql-playground-html graphql-tools
+npm install --save fastify-apollo-step apollo-server-core graphql fastify graphql-playground-html graphql-tools
 
 ```
-* apollo-server is a release candidate, its necessary to install from the rc tag -- https://www.apollographql.com/
 * by fastify, just need apollo-server-core, not apollo-server
 
 

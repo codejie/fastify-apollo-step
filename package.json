@@ -1,6 +1,6 @@
 {
   "name": "fastify-apollo-step",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Set up Apollo Server on Fastify.",
   "main": "index.js",
   "scripts": {
@@ -25,10 +25,10 @@
   },
   "homepage": "https://github.com/codejie/fastify-apollo-step#readme",
   "dependencies": {
-    "apollo-server-core": "^2.0.0-rc.6",
-    "fastify": "^1.7.0",
+    "apollo-server-core": "^2.0.4",
+    "fastify": "^1.11.1",
     "graphql": "^0.13.2",
     "graphql-playground-html": "^1.6.0",
-    "graphql-tools": "^3.0.4"
+    "graphql-tools": "^3.1.1"
   }
 }
