@@ -1,13 +1,14 @@
 import * as fastify from 'fastify';
 
+import * as WebSocket from 'ws';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 import { GraphQLSchema, DocumentNode } from 'graphql';
 import { IResolvers }  from 'graphql-tools';
 import { ConnectionContext } from 'subscriptions-transport-ws';
 
-declare module 'fastify' {
-    // interface FastifyApolloOptions
-}
+// declare module 'fastify' {
+//     // interface FastifyApolloOptions
+// }
 
 declare const fastifyApollo: fastify.Plugin<Server, IncomingMessage, ServerResponse, {
     path: string,
@@ -16,16 +17,16 @@ declare const fastifyApollo: fastify.Plugin<Server, IncomingMessage, ServerRespo
     typeDefs?: DocumentNode | Array<DocumentNode>,
     resolvers: IResolvers,
     subscriptions?: {
-        enabled: boolean;
-        path?: string;
-        onConnect?: (connectionParams: Object, websocket: WebSocket, context: ConnectionContext) => any;
-        onDisconnect?: (websocket: WebSocket, context: ConnectionContext) => any;
-    };
+        enabled: boolean,
+        path?: string,
+        onConnect?: (connectionParams: Object, websocket: WebSocket, context: ConnectionContext) => any,
+        onDisconnect?: (websocket: WebSocket, context: ConnectionContext) => any,
+    },
     graphiql?: {
         enabled: boolean,
         path?: string
     },
-    beforeHandler?: (request: IncomingMessage, reply: ServerResponse, done: () => void) => void;
+    beforeHandler?: (request: IncomingMessage, reply: ServerResponse, done: () => void) => void
 }>;
 
 export = fastifyApollo;

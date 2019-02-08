@@ -24,11 +24,12 @@
     "url": "https://github.com/codejie/fastify-apollo-step/issues"
   },
   "homepage": "https://github.com/codejie/fastify-apollo-step#readme",
-  "dependencies": {
-    "apollo-server-core": "^2.1.0",
-    "fastify": "^1.12.0",
-    "graphql": "^14.0.2",
-    "graphql-playground-html": "^1.6.0",
-    "graphql-tools": "^4.0.0"
+  "dependencies": {},
+  "devDependencies": {
+    "apollo-server-core": "^2.4.0",
+    "fastify": "^1.14.1",
+    "graphql": "^14.1.1",
+    "graphql-playground-html": "^1.6.12",
+    "graphql-tools": "^4.0.4"
   }
 }
