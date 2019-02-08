@@ -6,8 +6,8 @@ module.exports = ApolloFastify;
 
 // const options = {
 //     path: '/ql',
-//     context: undefined,//not supported yet.
-//     schema: undefined,
+//     context: undefined,
+//     gqlSchema: undefined,
 //     typeDefs: typeDefs,
 //     resolvers: resolvers,
 //     subscriptions: {
@@ -22,7 +22,7 @@ module.exports = ApolloFastify;
 //       enabled: true,
 //       path: '/iql'
 //     },
-//     beforeHandler: function (request, reply, done) {
+//     routeBeforeHandler: function (request, reply, done) {
 //       done();
 //     }
 // };
