@@ -1,7 +1,19 @@
 # fastify-apollo-step
 Set up Apollo Server with Fastify.
 
-`update to ApolloServer(2.x), and supports Subscriptions!`
+`update dependencies to the latest version.`
+
+```
+  "dependencies": {
+    "@types/node": "^14.14.8",
+    "apollo-server-core": "^2.19.0",
+    "fastify": "^3.8.0",
+    "graphql": "^15.4.0",
+    "graphql-playground-html": "^1.6.29",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-tools": "^7.0.1"
+  }
+```
 
 # [fastify](https://github.com/fastify) 
 Fast and low overhead web framework, for Node.js
@@ -19,7 +31,7 @@ fastify-apollo-step also supports graphiql/playground module of Apollo Server.
 
 # Usage
 ```
-npm install --save fastify-apollo-step apollo-server-core graphql fastify graphql-playground-html graphql-tools
+npm install --save fastify-apollo-step apollo-server-core graphql fastify graphql-playground-html graphql-tools graphql-subscriptions
 
 ```
 * by fastify, just need apollo-server-core, not apollo-server
@@ -118,6 +130,17 @@ declare namespace fastifyApollo {
     npm run mutation
     npm run subscription
 ```
+
+`Notes: Graphsql query must be with 'operationName' now.`
+```
+query [querybook] {
+  books {
+    author
+    title
+  }
+}
+```
+
 
 # ScreenShots
 * Query
