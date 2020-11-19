@@ -96,32 +96,11 @@ fastify.listen(3000, (err) => {
 
 # TypeScript
 
-  Ready. But I am not good at TypeScript yet.
+  Do NOT support TypeScript because NOT compatible with latest Fastify.
 
-  To conflict with Fastify Plugin Option, I have to change 'schema' and 'beforeHandler' of FastifyApollo's, Please refer to ./test/ts/subscription.ts.
+~~Ready. But I am not good at TypeScript yet.~~
 
-```js
-declare namespace fastifyApollo {
-    interface Options {
-        path: string,
-        context?: Record<string, any>,
-        gqlSchema?: GraphQLSchema,
-        typeDefs?: DocumentNode | Array<DocumentNode>,
-        resolvers: IResolvers,
-        subscriptions?: {
-            enabled: boolean,
-            path?: string,
-            onConnect?: (connectionParams: Object, websocket: WebSocket, context: ConnectionContext) => any,
-            onDisconnect?: (websocket: WebSocket, context: ConnectionContext) => any,
-        },
-        graphiql?: {
-            enabled: boolean,
-            path?: string
-        },
-        routeBeforeHandler?: (request: IncomingMessage, reply: ServerResponse, done: () => void) => void        
-    }
-}
-```
+  ~~To conflict with Fastify Plugin Option, I have to change 'schema' and 'beforeHandler' of FastifyApollo's, Please refer to ./test/ts/subscription.ts.~~
 
 # Test
 

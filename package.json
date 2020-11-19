@@ -1,6 +1,6 @@
 {
   "name": "fastify-apollo-step",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Set up Apollo Server on Fastify.",
   "main": "index.js",
   "scripts": {
